@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function NavBar() {
   return (
@@ -10,21 +10,27 @@ function NavBar() {
 
 function Home() {
   return (
-    <div id="home">
+    <div id="home" data-testid="home-container">
       <h1>Home</h1>
     </div>
   );
 }
 
-{/* write an <About> component here */}
-
+function About() {
+  return (
+    <div id="about" data-testid="about-container">
+      <h2>About Us</h2>
+      <p>This is the about section of our website.</p>
+    </div>
+  );
+}
 
 function App() {
   return (
     <div>
       <NavBar />
-      {/* add the <Home> component here */}
-      {/* add your <About> component here */}
+      <Home />
+      <About />
     </div>
   );
 }

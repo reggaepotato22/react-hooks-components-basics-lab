@@ -1,22 +1,24 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 
-import App from "../components/App";
+import App from "../components/App"; // Assuming your App component is in this path
 
-test("renders without errors", () => {
-  expect(() => render(<App />)).not.toThrow();
-});
+describe("App Component Tests", () => {
+  test("renders without errors", () => {
+    expect(() => render(<App />)).not.toThrow();
+  });
 
-test("renders the correct child components", () => {
-  const { container } = render(<App />);
+  test("renders the correct child components", () => {
+    render(<App />);
 
-  /*
-    Uncomment the line below to see the DOM elements being returned
-    by the App component in your terminal when you run the tests
-  */
-  // screen.debug();
+    // Use getByRole for semantic elements like navigation
+    expect(screen.getByRole("navigation")).toBeInTheDocument();
 
-  expect(container.querySelector("nav")).toBeInTheDocument();
-  expect(container.querySelector("#home")).toBeInTheDocument();
-  expect(container.querySelector("#about")).toBeInTheDocument();
+    // Use getElementById if your components truly use these IDs
+    const homeElement = document.getElementById("home");
+    const aboutElement = document.getElementById("about");
+
+    expect(homeElement).toBeInTheDocument();
+    expect(aboutElement).toBeInTheDocument();
+  });
 });
